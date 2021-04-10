@@ -1,31 +1,8 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { Home } from '@components/pages/home/Home';
-import { AdminHome } from '@components/pages/admin-home/AdminHome'
-import { newsRoutes } from './routes/news';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { IRouteItem } from '@interfaces/router/router'
 import NotFound from '@components/layout/not-found/NotFound';
-
-export const mainRoutes: IRouteItem[] = [
-  {
-    path: '/',
-    component: Home,
-    exact: true
-  },
-  {
-    path: '/404',
-    component: NotFound,
-    exact: true
-  },
-  ...newsRoutes,
-]
-
-export const adminRoutes: IRouteItem[] = [
-  {
-    path: '/admin',
-    component: AdminHome,
-    exact: true
-  },
-]
+import LayoutMain from '@components/layout/layout-main/LayoutMain';
+import LayoutAdmin from '@components/layout/layout-admin/LayoutAdmin';
 
 const RouteWithSubRoutes = (route: IRouteItem) => {
   return (
@@ -48,15 +25,13 @@ export const RenderRoutes = (routes: IRouteItem[]) =>  {
   );
 }
 
-declare interface IRouterComponentProps {
-  routes?: IRouteItem[]
-}
-
-declare interface IRouteItem  {
-  path: string;
-  key?: string | number;
-  exact?: boolean;
-  component: React.FC<IRouterComponentProps>;
-  routes?: IRouteItem[];
-  [propName: string]: any
+export const Router = () => {
+  return (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/admin/:path?" component={LayoutAdmin} />
+      <Route exact component={LayoutMain} />
+    </Switch>
+  </BrowserRouter>
+  )
 }

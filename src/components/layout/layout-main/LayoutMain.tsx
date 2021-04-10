@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Home } from '@components/pages/home/Home';
-import { RenderRoutes, mainRoutes } from '@router/router';
+import { RenderRoutes } from '@router/router';
+import { mainRoutes } from '@router/routes/index';
 
 const LayoutMain: React.FC = () => {
   {
