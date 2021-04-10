@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Home } from '@components/pages/home/Home';
-import { RenderRoutes, mainRoutes } from '@router/router';
+import { RenderRoutes, adminRoutes } from '@router/router';
 
-const LayoutMain: React.FC = () => {
+const LayoutAdmin: React.FC = () => {
   {
     return (
       <main>
-        { RenderRoutes(mainRoutes) }
+        { RenderRoutes(adminRoutes) }
       </main>
     )
   }
 }
 
-export default LayoutMain;
+export default LayoutAdmin;

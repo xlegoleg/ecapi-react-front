@@ -1,13 +1,20 @@
-import React from 'react';
-import LayoutMain from '@components/layout/layout-main/LayoutMain'
+import * as React from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import LayoutMain from '@components/layout/layout-main/LayoutMain';
+import LayoutAdmin from '@components/layout/layout-admin/LayoutAdmin';
 
-class App extends React.Component {
-  
-  render() {
-    return <div className="App">
-      <LayoutMain></LayoutMain>
+const App: React.FC = () => {
+
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/admin/:path?" component={LayoutAdmin} />
+          <Route exact component={LayoutMain} />
+        </Switch>
+      </Router>
     </div>
-  }
+  );
 
 }
 

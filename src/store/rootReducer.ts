@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { cathegoriesReducer } from '@reducers/cathegories';
+import { cathegoriesReducer } from './reducers/cathegories';
 
 export const rootReducer =combineReducers({
   cathegories: cathegoriesReducer

@@ -33,6 +33,9 @@
       "@reducers/*": [
         "src/store/reducers/*"
       ],
+      "@router/*": [
+        "src/router/*"
+      ],
     }
   },
   "include": [
