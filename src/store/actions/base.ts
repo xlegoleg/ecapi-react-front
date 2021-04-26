@@ -1,3 +1,4 @@
+// TODO move to types folder
 export const FETCHING = 'FETCHING';
 export const fetching = (fetching: boolean) => {
   return {

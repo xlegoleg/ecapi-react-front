@@ -9,6 +9,7 @@ const RouteWithSubRoutes = (route: IRouteItem) => {
     <Route
       path={route.path}
       exact={route.exact}
+      key={route.key}
       render={props => <route.component {...props} routes={route.routes} />}
     />
   );

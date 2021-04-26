@@ -39,6 +39,9 @@
       "@interfaces/*": [
         "src/interfaces/*"
       ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
     }
   },
   "include": [

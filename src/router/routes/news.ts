@@ -4,6 +4,7 @@ export const newsRoutes = [
   {
     path: '/news',
     component: News,
-    exact: true
+    exact: true,
+    key: 'news'
   }
 ]

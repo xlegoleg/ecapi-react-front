@@ -7,7 +7,8 @@ export const mainRoutes: IRouteItem[] = [
   {
     path: '/',
     component: Home,
-    exact: true
+    exact: true,
+    key: 'home'
   },
   ...newsRoutes,
 ]
@@ -16,6 +17,7 @@ export const adminRoutes: IRouteItem[] = [
   {
     path: '/admin',
     component: AdminHome,
-    exact: true
+    exact: true,
+    key: 'admin-home'
   },
 ]
