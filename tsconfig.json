@@ -36,6 +36,12 @@
       "@router/*": [
         "src/router/*"
       ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
     }
   },
   "include": [

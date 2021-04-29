@@ -337,7 +337,9 @@ module.exports = function (webpackEnv) {
         '@components': 'src/components/',
         '@actions': 'src/store/actions/',
         '@reducers': 'src/store/reducers/',
-        '@router': 'src/router',
+        '@router': 'src/router/',
+        '@interfaces': 'src/interfaces/',
+        '@styles': 'src/styles/'
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

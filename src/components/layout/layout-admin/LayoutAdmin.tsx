@@ -1,16 +1,13 @@
 import * as React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Home } from '@components/pages/home/Home';
-import { RenderRoutes, adminRoutes } from '@router/router';
+import { RenderRoutes } from '@router/router';
+import { adminRoutes } from '@router/routes/index';
 
 const LayoutAdmin: React.FC = () => {
-  {
-    return (
-      <main>
-        { RenderRoutes(adminRoutes) }
-      </main>
-    )
-  }
+  return (
+    <main>
+      { RenderRoutes(adminRoutes) }
+    </main>
+  )
 }
 
 export default LayoutAdmin;
