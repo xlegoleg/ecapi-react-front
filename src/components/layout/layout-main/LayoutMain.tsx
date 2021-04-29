@@ -4,22 +4,29 @@ import { mainRoutes } from '@router/routes/index';
 import Container from '@material-ui/core/Container';
 import { HeaderMain } from '@components/headers/header-main/HeaderMain';
 import { FooterMain } from '@components/footers/footer-main/FooterMain';
-import { ThemeProvider } from '@material-ui/styles';
-import { mainTheme } from '@styles/themes/main'
+import { MainThemeProvider } from '@styles/themes/main';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  container: {
+    width: '100%',
+    height: '100%'
+  }
+});
 
 const LayoutMain: React.FC = () => {
+  const classes = useStyles();
+
   return (
-    <ThemeProvider theme={mainTheme}>
-      <div>
-        <HeaderMain/>
+    <MainThemeProvider>
+      <HeaderMain/>
         <main>
-          <Container maxWidth="lg">
+          <Container className={classes.container} maxWidth="lg">
             { RenderRoutes(mainRoutes) }
           </Container>
         </main>
-        <FooterMain/>
-      </div>
-    </ThemeProvider>
+      <FooterMain/>
+    </MainThemeProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { IRouteItem } from '@interfaces/router/router'
-import NotFound from '@components/layout/not-found/NotFound';
+import NotFound from '@components/pages/404/NotFound';
 import LayoutMain from '@components/layout/layout-main/LayoutMain';
 import LayoutAdmin from '@components/layout/layout-admin/LayoutAdmin';
 

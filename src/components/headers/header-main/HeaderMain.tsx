@@ -19,7 +19,6 @@ export const HeaderMain: React.FC = (props) => {
   const classes = useStyles();
 
   return (
-    <Box flexGrow="1">
       <AppBar position="static" color="primary">
         <Toolbar className={classes.toolbar}>
           {/* TODO set title from CMS */}
@@ -41,6 +40,5 @@ export const HeaderMain: React.FC = (props) => {
           </Box>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }

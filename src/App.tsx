@@ -7,9 +7,7 @@ const App: React.FC = () => {
   return (
     <React.Fragment>
       <CssBaseline/>
-        <div className="App">
-          <Router/>
-        </div>
+        <Router/>
     </React.Fragment>
   );
 
