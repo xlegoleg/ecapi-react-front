@@ -9,6 +9,9 @@ export const useGlobalStyles = makeStyles({
     body: {
       width: '100%',
       height: '100%'
+    },
+    a: {
+      textDecoration: 'none'
     }
   }
 })

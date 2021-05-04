@@ -6,5 +6,5 @@
 main {
   width: 100%;
   /* TODO fix when adaptive will be*/
-  height: calc(100% - 64px);
+  height: calc(100% - 86px);
 }

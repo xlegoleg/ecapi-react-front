@@ -4,6 +4,7 @@ import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { HeaderMainNav } from '@components/navs/header-main-nav/HeaderMainNav';
+import { HeaderContact } from '@components/headers/header-contact/HeaderContact';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -20,6 +21,7 @@ export const HeaderMain: React.FC = (props) => {
 
   return (
       <AppBar position="static" color="primary">
+        <HeaderContact/>
         <Toolbar className={classes.toolbar}>
           {/* TODO set title from CMS */}
           <Box display="flex" alignItems="center">
