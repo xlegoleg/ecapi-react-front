@@ -4,10 +4,10 @@ import { BaseCarousel } from '@components/base/carousel/BaseCarousel';
 export const HomePromo: React.FC = (props) => {
   return (
     <div>
-      <BaseCarousel spacing={10} columns={3}>
-        <BaseCarousel.Block>123</BaseCarousel.Block>
-        <BaseCarousel.Block>456</BaseCarousel.Block>
-        <BaseCarousel.Block>789</BaseCarousel.Block>
+      <BaseCarousel auto={true} columns={3}>
+        <BaseCarousel.Block><div style={{width: '100%', height: '100px', background: 'red'}}/></BaseCarousel.Block>
+        <BaseCarousel.Block><div style={{width: '100%', height: '100px', background: 'green'}}/></BaseCarousel.Block>
+        <BaseCarousel.Block><div style={{width: '100%', height: '100px', background: 'blue'}}/></BaseCarousel.Block>
       </BaseCarousel>
     </div>
   );
