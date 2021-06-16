@@ -6,14 +6,26 @@ import { IBaseCarouselProps, IBaseCarouselSubComponents } from '@interfaces/comp
  
 const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = (props: IBaseCarouselProps) => {
   const [autoInterval, setAutoInterval] = useState<NodeJS.Timer | null>(null);
-  
-  // TODO translate = 0*page - spacing*px
+  const [page, setPage] = useState(0);
+  const [isTransition, setIsTransition] = useState(true);
+
+  const columns = props?.columns || 1;
   const interval = 3000;
-  const pages = React.Children.count(props.children) || props.items?.length || 0;
-  const [page, setPage] = useState(0)
+  const pages = Math.ceil((React.Children.count(props.children))/columns) || 0;
+  const groupedChildren = React.Children.toArray(props.children)?.reduce((acc: React.ReactNode[][] , child, index) => {
+    if (!index || (index && !(index % columns))) {
+      acc.push([child]);
+    } else {
+      Array.isArray(acc[acc.length - 1]) ? acc[acc.length - 1].push(child) : acc.push([child]);
+    }
+    return acc;
+  }, [])
+
   const classes = useStyles({
-    pages: pages,
-    page: page,
+    pages,
+    page,
+    columns,
+    isTransition,
     ...props
   });
 
@@ -28,13 +40,18 @@ const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = 
   }, [page]);
 
   const changePage = (page: number): void => {
+    if (page > pages-1 || page < 0) {
+      setIsTransition(false)
+    } else if (page === 1) {
+      setIsTransition(true);
+    }
     setPage(page > pages-1 ? 0 : page < 0 ? pages-1 : page)
   }
 
   const initAutoScroll = (): void => {
     if (props.auto) {
       const initialInterval = setInterval(() => {
-        changePage(page+1);
+        changePage(page-1);
       }, interval);
       setAutoInterval(initialInterval);
     }
@@ -44,9 +61,19 @@ const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = 
     <div className={classes.container}>
       <div className={classes.rail}>
         {
-          props?.items?.length ?
-          props?.items?.map((item: React.FC | React.Component | Element) => item)
-          : props.children
+          groupedChildren.map((child, boxIndex) => {
+            return (
+              <div key={`carousel-box-${boxIndex}`} className={classes.box}>
+                {
+                  child.map((item, itemIndex) => {
+                    return (
+                      <div key={`carousel-item-${itemIndex}`} className={classes.item}>{item}</div>
+                    )
+                  })
+                }
+              </div>
+            )
+          })
         }
       </div>
     </div>
@@ -56,7 +83,6 @@ const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = 
 BaseCarousel.defaultProps = {
   columns: 1,
   spacing: 0,
-  items: [],
   children: null,
   auto: false
 }

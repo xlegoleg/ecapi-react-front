@@ -1,7 +1,6 @@
 import React from 'react'
 
 export interface IBaseCarouselProps {
-  items?: any,
   spacing?: number,
   columns?: number,
   auto?: boolean,
@@ -12,7 +11,8 @@ export interface IBaseCarouselProps {
 
 export interface IBaseCarouselStyleProps extends IBaseCarouselProps {
   pages: number,
-  page: number
+  page: number,
+  isTransition?: boolean;
 }
 
 export interface IBaseCarouselSubComponents {
