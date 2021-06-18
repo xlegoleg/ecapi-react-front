@@ -28,7 +28,10 @@ export const mainTheme = createMuiTheme({
     primary: {
       main: grey[900],
       light: grey[800]
-    }
+    },
+    white: {
+      main: '#fff'
+    },
   },
   typography: {
     fontFamily: [

@@ -1,5 +1,5 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { IBaseCarouselStyleProps } from '@interfaces/components/BaseCarousel';
+import { IBaseCarouselStyleProps } from '@/interfaces/components/carousel/BaseCarousel';
 
 export const useStyles = makeStyles((theme: Theme) => {
   return createStyles({

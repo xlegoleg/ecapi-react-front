@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BaseCarouselNav } from './BaseCarouselNav';
 import { IconButton } from '@material-ui/core';
-import { useStyles } from './BaseCarouselStyle';
-import { IBaseCarouselProps, IBaseCarouselSubComponents } from '@interfaces/components/BaseCarousel';
+import { useStyles } from './styles/BaseCarouselStyle';
+import { IBaseCarouselProps, IBaseCarouselSubComponents } from '@/interfaces/components/carousel/BaseCarousel';
 
  
 const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = (props: IBaseCarouselProps) => {
@@ -39,22 +40,27 @@ const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = 
     }
   }, [page]);
 
-  const changePage = (page: number): void => {
-    if (page > pages-1 || page < 0) {
+  const changePage = (newPage: number): void => {
+    const selectedPage = newPage > pages-1 ? 0 : newPage < 0 ? pages-1 : newPage;
+    if ((selectedPage === 0 && page === pages-1) || (selectedPage === pages - 1 && !page )) {
       setIsTransition(false)
-    } else if (page === 1) {
+    } else {
       setIsTransition(true);
     }
-    setPage(page > pages-1 ? 0 : page < 0 ? pages-1 : page)
+    setPage(newPage > pages-1 ? 0 : newPage < 0 ? pages-1 : newPage)
   }
 
   const initAutoScroll = (): void => {
     if (props.auto) {
       const initialInterval = setInterval(() => {
-        changePage(page-1);
+        changePage(page+1);
       }, interval);
       setAutoInterval(initialInterval);
     }
+  }
+
+  const updateHandler = (page: number) => {
+    changePage(page);
   }
 
   return (
@@ -76,6 +82,7 @@ const BaseCarousel: React.FC<IBaseCarouselProps> & IBaseCarouselSubComponents = 
           })
         }
       </div>
+      {props?.showNav ? <BaseCarouselNav updatePage={updateHandler} page={page} pages={pages}/> : null}
     </div>
   );
 }

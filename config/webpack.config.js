@@ -339,7 +339,8 @@ module.exports = function (webpackEnv) {
         '@reducers': 'src/store/reducers/',
         '@router': 'src/router/',
         '@interfaces': 'src/interfaces/',
-        '@styles': 'src/styles/'
+        '@styles': 'src/styles/',
+        '@public': 'public/'
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
