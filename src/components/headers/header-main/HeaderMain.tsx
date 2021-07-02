@@ -5,6 +5,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { HeaderMainNav } from '@components/navs/header-main-nav/HeaderMainNav';
 import { HeaderContact } from '@components/headers/header-contact/HeaderContact';
+import { BaseLoginModal } from '@components/base/modals/BaseLoginModal';
+import { BaseRegisterModal } from '@components/base/modals/BaseRegisterModal';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -17,7 +19,25 @@ const useStyles = makeStyles((theme: Theme) => {
 
 export const HeaderMain: React.FC = (props) => {
   const [title] = useState('Beer-to-peer');
+  const [openLogin, setOpenLogin] = useState(false);
+  const [openRegister, setOpenRegister] = useState(false);
   const classes = useStyles();
+
+  const handleLoginModalOpen = () => {
+    setOpenLogin(true);
+  }
+
+  const handleLoginModalClose = () => {
+    setOpenLogin(false);
+  }
+
+  const handleRegisterModalOpen = () => {
+    setOpenRegister(true);
+  }
+
+  const handleRegisterModalClose = () => {
+    setOpenRegister(false);
+  }
 
   return (
       <AppBar position="static" color="primary">
@@ -32,8 +52,16 @@ export const HeaderMain: React.FC = (props) => {
             <HeaderMainNav/>
           </Box>
           <Box display="flex" alignItems="center">
-            <Box><Button size='small' variant="outlined" color="secondary">Register</Button></Box>
-            <Box ml="10px"><Button size='small' variant="contained" color="secondary">Login</Button></Box>
+            <Box>
+              <Button onClick={handleRegisterModalOpen} size='small' variant="outlined" color="secondary">
+                Register
+              </Button>
+            </Box>
+            <Box ml="10px">
+              <Button onClick={handleLoginModalOpen} size='small' variant="contained" color="secondary">
+                Login
+              </Button>
+            </Box>
             <Box ml="10px">
               <IconButton size='small' color="secondary">
                 <ShoppingCartIcon fontSize='small'/>
@@ -41,6 +69,15 @@ export const HeaderMain: React.FC = (props) => {
               </Box>
           </Box>
         </Toolbar>
+        <BaseLoginModal 
+          openModal={openLogin} 
+          closeHandle={handleLoginModalClose} 
+          registerHandle={handleRegisterModalOpen}
+        />
+        <BaseRegisterModal
+          openModal={openRegister}
+          closeHandle={handleRegisterModalClose}
+        />
       </AppBar>
   );
 }

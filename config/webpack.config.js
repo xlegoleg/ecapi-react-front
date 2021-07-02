@@ -340,6 +340,7 @@ module.exports = function (webpackEnv) {
         '@router': 'src/router/',
         '@interfaces': 'src/interfaces/',
         '@styles': 'src/styles/',
+        '@services': 'src/services/',
         '@public': 'public/'
       },
       plugins: [

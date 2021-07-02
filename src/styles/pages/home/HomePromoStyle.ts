@@ -3,7 +3,18 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
     container: {
-      position: 'relative'
+      position: 'relative',
+      '&:before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        top: '0',
+        bottom: '0',
+        left: '0',
+        right: '0',
+        zIndex: 2,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
+      }
     },
     title: {
       borderRadius: '15px',
@@ -16,7 +27,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       fontSize: '40px',
       textTransform: 'uppercase',
       color: `${theme.palette.white.main}`,
-      boxShadow: 'inset 0px 0px 15px 25px rgb(0 0 0 / 50%), 0px 0px 15px 15px rgb(0 0 0 / 50%)'
+      zIndex: 3
     }
   })
 })

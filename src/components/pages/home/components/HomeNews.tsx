@@ -1,6 +1,8 @@
-import React from "react"
-import { Typography, Card, CardContent, CardMedia, CardActions, Grid } from "@material-ui/core"
+import React, { useEffect, useState } from "react"
+import { Typography, Card, CardContent, CardMedia, CardActions, Grid, Box, Button } from "@material-ui/core"
 import { useStyles } from "@styles/pages/home/HomeNewsStyle"
+import postsService from '@services/blog/postsService';
+import { IPostEntity } from "@/interfaces/services/blog/posts";
 
 const mock = [
     {
@@ -22,31 +24,43 @@ const mock = [
 
 export const HomeNews: React.FC = (props: any) => {
     const classes = useStyles();
+    const [news, setNews] = useState<Array<IPostEntity>>([]);
 
-    return <Card style={{borderRadius: '0px'}}>
+    useEffect(() => {
+        postsService.getNews().then((news) => {
+            setNews(news);
+        });
+    }, [])
+
+    return <Card style={{borderRadius: '0px', boxShadow: 'none', overflow:'visible'}}>
         <div className={classes.titleContainer}>
             <Typography className={classes.title} variant="h3">
                 Latest news
             </Typography>
         </div>
-        <CardContent>
+        <CardContent style={{paddingLeft: '0', paddingRight: '0'}}>
             <Grid container spacing={2}>
                 {
-                    mock.map((item, index) => {
-                        return <Grid key={`home-news-${index}`} item xs={12} md={6}>
-                            <Card>
+                    news.map((item, index) => {
+                        return <Grid key={`home-news-${index}`} item xs={12} sm={6} md={4}>
+                            <Card className={classes.newsCard}>
                                 <CardMedia
                                     component="div"
-                                    style={{backgroundColor: item.background, height: '140px', width: '100$'}}
+                                    style={{backgroundImage: `url("${item.image}")`, height: '200px', width: '100%'}}
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography className={classes.newsTitle} gutterBottom variant="h5" component="h2">
                                         {item.title}
                                     </Typography>
-                                    <Typography style={{height: '140px', overflow: 'hidden', textOverflow: 'ellipsis'}} variant="body2" color="textSecondary" component="p">
+                                    <Typography className={classes.newsDescription} variant="body2" color="textSecondary" component="p">
                                         {item.description}
                                     </Typography>
                                 </CardContent>
+                                <CardActions className={classes.newsCardActions}>
+                                    <Box display="flex" marginLeft="auto" component="div">
+                                        <Button variant="contained" color="secondary">read more</Button>
+                                    </Box>
+                                </CardActions>
                             </Card>
                         </Grid>
                     })
