@@ -337,6 +337,8 @@ module.exports = function (webpackEnv) {
         '@components': 'src/components/',
         '@actions': 'src/store/actions/',
         '@reducers': 'src/store/reducers/',
+        '@store': 'src/store/',
+        '@utils': 'src/utils/',
         '@router': 'src/router/',
         '@interfaces': 'src/interfaces/',
         '@styles': 'src/styles/',

@@ -1,7 +1,4 @@
-//TODO reducers with async actions googling
-import {
-  FETCHING
-} from '@actions/base';
+//TODO reducers with async actions googlin
 import { 
   FETCH_VALUES,
   CathegoriesActionTypes
@@ -14,8 +11,6 @@ const initialState = {
 
 export const cathegoriesReducer = (state = initialState, action: CathegoriesActionTypes ) => {
   switch(action.type) {
-    case FETCHING:
-      return {...state, fetching: action.payload}
     case FETCH_VALUES:
       return {
         ...state,

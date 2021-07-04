@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Toolbar, Button, Box, IconButton, Typography, AppBar } from '@material-ui/core';
 import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -7,6 +8,8 @@ import { HeaderMainNav } from '@components/navs/header-main-nav/HeaderMainNav';
 import { HeaderContact } from '@components/headers/header-contact/HeaderContact';
 import { BaseLoginModal } from '@components/base/modals/BaseLoginModal';
 import { BaseRegisterModal } from '@components/base/modals/BaseRegisterModal';
+import { BaseLogoutModal } from '@components/base/modals/BaseLogoutModal';
+import { IRootState } from '@interfaces/state';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -18,10 +21,15 @@ const useStyles = makeStyles((theme: Theme) => {
 
 
 export const HeaderMain: React.FC = (props) => {
-  const [title] = useState('Beer-to-peer');
+  const title = 'Beer-to-peer';
+  const classes = useStyles();
+
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
-  const classes = useStyles();
+  const [openLogout, setOpenLogout] = useState(false);
+
+
+  const isLoggedIn = useSelector((state: IRootState) => state.user.userIsLoggedIn);
 
   const handleLoginModalOpen = () => {
     setOpenLogin(true);
@@ -39,6 +47,14 @@ export const HeaderMain: React.FC = (props) => {
     setOpenRegister(false);
   }
 
+  const handleLogoutModalOpen = () => {
+    setOpenLogout(true);
+  }
+
+  const handleLogoutModalClose = () => {
+    setOpenLogout(false);
+  }
+
   return (
       <AppBar position="static" color="primary">
         <HeaderContact/>
@@ -52,16 +68,27 @@ export const HeaderMain: React.FC = (props) => {
             <HeaderMainNav/>
           </Box>
           <Box display="flex" alignItems="center">
-            <Box>
-              <Button onClick={handleRegisterModalOpen} size='small' variant="outlined" color="secondary">
-                Register
-              </Button>
-            </Box>
-            <Box ml="10px">
-              <Button onClick={handleLoginModalOpen} size='small' variant="contained" color="secondary">
-                Login
-              </Button>
-            </Box>
+            {
+              !isLoggedIn ? <React.Fragment>
+                <Box>
+                  <Button onClick={handleRegisterModalOpen} size='small' variant="outlined" color="secondary">
+                    Register
+                  </Button>
+                </Box>
+                <Box ml="10px">
+                  <Button onClick={handleLoginModalOpen} size='small' variant="contained" color="secondary">
+                    Login
+                  </Button>
+                </Box>
+              </React.Fragment>
+              : <React.Fragment>
+                <Box>
+                  <Button onClick={handleLogoutModalOpen} size='small' variant="outlined" color="secondary">
+                    Logout
+                  </Button>
+                </Box>
+              </React.Fragment>
+            }
             <Box ml="10px">
               <IconButton size='small' color="secondary">
                 <ShoppingCartIcon fontSize='small'/>
@@ -77,6 +104,10 @@ export const HeaderMain: React.FC = (props) => {
         <BaseRegisterModal
           openModal={openRegister}
           closeHandle={handleRegisterModalClose}
+        />
+        <BaseLogoutModal
+          openModal={openLogout}
+          closeHandle={handleLogoutModalClose}
         />
       </AppBar>
   );

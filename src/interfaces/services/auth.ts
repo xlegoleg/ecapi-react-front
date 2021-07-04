@@ -3,9 +3,19 @@ enum UserRoles {
   'admin'
 }
 
+export interface IUserLoginToken {
+  token: string;
+  expiresIn: string | number;
+}
+
 export interface IUserLoginPayload {
   email: string;
   password: string;
+}
+
+export interface IUserLoginResponse {
+  user: IUserEntity;
+  token: IUserLoginToken;
 }
 
 export interface IUserEntity {

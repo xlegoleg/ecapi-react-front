@@ -1,7 +1,7 @@
 //TODO refactor))))
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { IBaseFetchingAction, fetching } from '@actions/base'; 
+import { IBaseAppLoadingAction, appLoading } from '@actions/base'; 
 
 export const FETCH_VALUES = 'cathegories/setValues';
 const setValues = (values: any[]) => {
@@ -24,4 +24,4 @@ declare interface IFetchValuesAction {
   payload: any[];
 }
 
-export type CathegoriesActionTypes = IFetchValuesAction | IBaseFetchingAction;
+export type CathegoriesActionTypes = IFetchValuesAction | IBaseAppLoadingAction;

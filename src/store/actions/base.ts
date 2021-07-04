@@ -1,13 +1,13 @@
-// TODO move to types folder
-export const FETCHING = 'FETCHING';
-export const fetching = (fetching: boolean) => {
+import { APP_LOADING } from "../types/base"
+
+export const appLoading = (state: boolean) => {
   return {
-    type: FETCHING,
-    payload: fetching
+    type: APP_LOADING,
+    payload: state
   }
 }
 
-export interface IBaseFetchingAction  {
-  type: typeof FETCHING;
+export interface IBaseAppLoadingAction  {
+  type: typeof APP_LOADING;
   payload: boolean;
 }

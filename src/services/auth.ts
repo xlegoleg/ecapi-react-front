@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { IUserEntity, IUserLoginPayload } from "@interfaces/services/auth";
+import { IUserEntity, IUserLoginPayload, IUserLoginResponse } from "@interfaces/services/auth";
 
 class AuthService {
     private baseUrl: string;
@@ -10,9 +10,9 @@ class AuthService {
         this.clientInstance = axios.create();
     }
 
-    public login (payload: IUserLoginPayload): Promise<IUserEntity> {
+    public login (payload: IUserLoginPayload): Promise<IUserLoginResponse> {
         return new Promise((resolve, reject) => {
-            this.clientInstance.post(`${this.baseUrl}/login`, payload).then((response: AxiosResponse<IUserEntity>) => {
+            this.clientInstance.post(`${this.baseUrl}/login`, payload).then((response: AxiosResponse<IUserLoginResponse>) => {
                 resolve(response.data);
             }).catch((e: Error) => {
                 reject(e);

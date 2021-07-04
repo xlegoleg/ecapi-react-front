@@ -33,6 +33,12 @@
       "@reducers/*": [
         "src/store/reducers/*"
       ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
       "@router/*": [
         "src/router/*"
       ],

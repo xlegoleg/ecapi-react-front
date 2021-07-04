@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, Typography, Link } from "@material-ui/core";
 import { useButtonsStyles } from "@styles/globals/ButtonsStyle";
-import authService from "@services/auth";
+import { useDispatch } from "react-redux";
+import { loginUser } from "@actions/user";
 
 export const BaseLoginModal: React.FC<any> = (props: any) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+
+    const dispatch = useDispatch();
 
     const buttonClasses = useButtonsStyles();
 
@@ -14,13 +17,9 @@ export const BaseLoginModal: React.FC<any> = (props: any) => {
         props.registerHandle();
     }
 
-    const loginUser = () => {
-        authService.login({
-            email,
-            password
-        }).then((user) => {
-            console.log(user);
-        })
+    const login = () => {
+        dispatch(loginUser({ email, password }));
+        props.closeHandle();
     }
 
     return <Dialog open={props.openModal} onClose={props.closeHandle}>
@@ -47,12 +46,12 @@ export const BaseLoginModal: React.FC<any> = (props: any) => {
                 margin="dense"
                 id="pass"
                 label="Password"
-                type="string"
+                type="password"
                 fullWidth
           />
         </DialogContent>
         <DialogActions>
-            <Button onClick={loginUser} className={buttonClasses.successButton} size='small' variant="contained">
+            <Button onClick={login} className={buttonClasses.successButton} size='small' variant="contained">
                 Submit
             </Button>
             <Button onClick={props.closeHandle} className={buttonClasses.errorButton} size='small' variant="contained">
