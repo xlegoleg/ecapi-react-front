@@ -1,18 +1,18 @@
 import React from 'react'
 
 export interface IBaseCarouselProps {
-  items?: any,
   spacing?: number,
   columns?: number,
   auto?: boolean,
-  showNavButtons?: boolean,
-  showIndicators?: boolean,
+  showNav?: boolean,
+  showArrows?: boolean,
   children?: React.ReactFragment | null,
 }
 
 export interface IBaseCarouselStyleProps extends IBaseCarouselProps {
   pages: number,
-  page: number
+  page: number,
+  isTransition?: boolean;
 }
 
 export interface IBaseCarouselSubComponents {

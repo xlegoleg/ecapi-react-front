@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const BaseContainer: React.FC<IWrapperProps> = ({ children }) => {
+export const BaseContainer: React.FC<any> = ({ children }: IWrapperProps) => {
   const classes = useStyles();
 
   return (

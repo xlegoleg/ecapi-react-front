@@ -1,5 +1,5 @@
 import React from 'react';
 
 export interface IWrapperProps{
-  children: React.FC | React.Component | string | number | boolean
+  children: Element | React.FC | React.Component | string | number | boolean 
 }
